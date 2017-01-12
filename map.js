@@ -27,11 +27,37 @@ map.on('load', function() {
                 'fill-color': {
                     property: 'bikesc',
                     stops: [
-                        [100.0, '#00ff00'],
+                        [100.0, '#000077'],
                         [2000.0, '#ff0000']
                     ]
                 }
             }
         });
+
+        d3.json('Bikeways.geojson', function(err, data) {
+            if (err) throw err;
+        
+            // Create parcels data source
+            map.addSource('bikeways', {
+                'type': 'geojson',
+                'data': data
+            });
+
+            // Add parcels layer, using bikescore to color parcels
+            map.addLayer({
+                'id': 'bikeways-layer',
+                'type': 'line',
+                'source': 'bikeways',
+                'layout': {
+                    'line-cap': 'round',
+                },
+                'paint': {
+                    'line-width': 2,
+                    'line-color': '#00ff00',
+                },
+            });
+        });
+
+
     });
 });
