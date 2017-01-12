@@ -9,7 +9,7 @@ var map = new mapboxgl.Map({
 
 map.on('load', function() {
     // Load geojson and handle it
-    d3.json('bikeways.geojson', function(err, data) {
+    d3.json('bikescore.geojson', function(err, data) {
         if (err) throw err;
     
         // Create parcels data source
